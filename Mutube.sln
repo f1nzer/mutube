@@ -1,6 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mutube.Web", "Mutube.Web\Mutube.Web.csproj", "{51767C93-D6C5-4F52-AF01-2AB484DA6C9D}"
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.421
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mutube.Web", "Mutube.Web\Mutube.Web.csproj", "{51767C93-D6C5-4F52-AF01-2AB484DA6C9D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mutube.Database", "Mutube.Database\Mutube.Database.csproj", "{093D0857-D263-4589-AF2C-DFFE77ABBB37}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mutube.Database.Migrations", "Mutube.Database.Migrations\Mutube.Database.Migrations.csproj", "{7C486543-E533-4122-9742-6369C9918132}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -12,5 +19,19 @@ Global
 		{51767C93-D6C5-4F52-AF01-2AB484DA6C9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{51767C93-D6C5-4F52-AF01-2AB484DA6C9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{51767C93-D6C5-4F52-AF01-2AB484DA6C9D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{093D0857-D263-4589-AF2C-DFFE77ABBB37}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{093D0857-D263-4589-AF2C-DFFE77ABBB37}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{093D0857-D263-4589-AF2C-DFFE77ABBB37}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{093D0857-D263-4589-AF2C-DFFE77ABBB37}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C486543-E533-4122-9742-6369C9918132}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C486543-E533-4122-9742-6369C9918132}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C486543-E533-4122-9742-6369C9918132}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C486543-E533-4122-9742-6369C9918132}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {08533213-194B-40DB-942B-13C40FD3673D}
 	EndGlobalSection
 EndGlobal

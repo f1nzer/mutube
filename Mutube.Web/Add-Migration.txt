@@ -1,0 +1,1 @@
+﻿Add-Migration {migrationName} -Context MutubeDbContext -Project Mutube.Database.Migrations
