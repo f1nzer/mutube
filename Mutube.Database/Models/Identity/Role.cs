@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Mutube.Database.Models.Identity
+namespace Mutube.Database.Models
 {
     public class Role : IdentityRole<long>
     {

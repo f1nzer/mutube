@@ -1,5 +1,4 @@
 using System;
-using Mutube.Database.Models.Identity;
 
 namespace Mutube.Database.Models
 {

@@ -6,7 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Mutube.Database;
-using Mutube.Database.Models.Identity;
+using Mutube.Database.Models;
 using Mutube.Web.Options;
 using System;
 using System.IdentityModel.Tokens.Jwt;

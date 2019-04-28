@@ -1,12 +1,14 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using Mutube.Database.Models.Identity;
+using Mutube.Database.Models;
 
 namespace Mutube.Database
 {
     public class MutubeDbContext : IdentityDbContext<User, Role, long,
         UserClaim, UserRole, UserLogin, RoleClaim, UserToken>
     {
+        public DbSet<Playlist> Playlists { get; set; }
+
         public MutubeDbContext()
         {
         }
