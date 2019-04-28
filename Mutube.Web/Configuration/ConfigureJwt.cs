@@ -15,63 +15,7 @@ namespace Mutube.Web.Configuration
 {
     public static class ConfigureJwt
     {
-        const string MIGRATIONS_ASSEMBLY = "Mutube.Database.Migrations";
         const string JWT_SETTINGS_SECTION = "JwtSettings";
-
-        const string ENV_HOST = "DBHOST";
-        const string ENV_HOST_DEFAULT = "localhost";
-        const string ENV_PORT = "DBPORT";
-        const string ENV_PORT_DEFAULT = "5432";
-        const string ENV_USERNAME = "DBUSERNAME";
-        const string ENV_USERNAME_DEFAULT = "postgres";
-        const string ENV_PASSWORD = "DBPASSWORD";
-        const string ENV_DEFAULT_PASSWORD = "20002000"; //TODO:
-        const string ENV_DATABASE = "DBNAME";
-        const string ENV_DEFAULT_DATABASE = "mutube";
-
-        static IServiceCollection AddIdentityDatabaseInternal(this IServiceCollection service,
-           IConfiguration configuration)
-        {
-            //TODO:
-            var host = Environment.GetEnvironmentVariable(ENV_HOST);
-            if (string.IsNullOrWhiteSpace(host))
-            {
-                host = ENV_HOST_DEFAULT;
-            }
-            var port = Environment.GetEnvironmentVariable(ENV_PORT);
-            if (string.IsNullOrWhiteSpace(port))
-            {
-                port = ENV_PORT_DEFAULT;
-            }
-            var username = Environment.GetEnvironmentVariable(ENV_USERNAME);
-            if (string.IsNullOrWhiteSpace(username))
-            {
-                username = ENV_USERNAME_DEFAULT;
-            }
-
-            var password = Environment.GetEnvironmentVariable(ENV_PASSWORD);
-            if (string.IsNullOrWhiteSpace(password))
-            {
-                password = ENV_DEFAULT_PASSWORD;
-            }
-
-            var database = Environment.GetEnvironmentVariable(ENV_DATABASE);
-            if (string.IsNullOrWhiteSpace(database))
-            {
-                database = ENV_DEFAULT_DATABASE;
-            }
-
-            var connectionString = $"Host={host};Port={port};Username={username};Password={password};Database={database}";
-
-            service.AddDbContext<MutubeDbContext>(options =>
-            {
-                options.UseNpgsql(connectionString,
-                    b => b.MigrationsAssembly(MIGRATIONS_ASSEMBLY));
-                options.UseOpenIddict<long>();
-            });
-
-            return service;
-        }
 
         static IServiceCollection AddIdentityInternal(this IServiceCollection service)
         {
@@ -192,7 +136,6 @@ namespace Mutube.Web.Configuration
             service
                 //.AddTickerBuilderInternal()
                 .AddBearerOptionsInternal(configuration)
-                .AddIdentityDatabaseInternal(configuration)
                 .AddIdentityInternal()
                 .AddOpenIddictInternal(configuration)
                 .AddJwtAuthorizationInternal(configuration)

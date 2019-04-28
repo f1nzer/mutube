@@ -1,17 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
+using Mutube.Database;
 using Mutube.Web.Configuration;
+using Mutube.Web.Hubs;
 
 namespace Mutube.Web
 {
@@ -27,8 +23,27 @@ namespace Mutube.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            SetupDatabase(services);
+            
             services.ConfigureJwtIdentity(Configuration);
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+        }
+
+        private static void SetupDatabase(IServiceCollection services)
+        {
+            var host = Environment.GetEnvironmentVariable("DBHOST") ?? "localhost";
+            var port = Environment.GetEnvironmentVariable("DBPORT") ?? "5432";
+            var username = Environment.GetEnvironmentVariable("DBUSERNAME") ?? "postgres";
+            var password = Environment.GetEnvironmentVariable("DBPASSWORD") ?? "20002000";
+            var database = Environment.GetEnvironmentVariable("DBNAME") ?? "mutube";
+            var connectionString = $"Host={host};Port={port};Username={username};Password={password};Database={database}";
+
+            services.AddDbContext<MutubeDbContext>(options =>
+            {
+                options.UseNpgsql(connectionString,
+                    builder => builder.MigrationsAssembly("Mutube.Database.Migrations"));
+                options.UseOpenIddict<long>();
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -46,6 +61,11 @@ namespace Mutube.Web
 
             app.UseHttpsRedirection();
             app.UseMvc();
+
+            app.UseSignalR(routes =>
+            {
+                routes.MapHub<RoomsHub>("/hub/rooms");
+            });
         }
     }
 }
